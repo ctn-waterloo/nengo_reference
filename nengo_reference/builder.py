@@ -231,7 +231,6 @@ class Builder(object):
                                                       solver_info=solver_info)
         elif isinstance(conn.pre_obj, nengo.Node):
             transform = nengo.utils.builder.full_transform(conn)
-            print transform, conn.pre, conn.post
             self.model.params[conn] = BuiltConnection(decoders=None,
                                                       eval_points=None,
                                                       transform=transform,

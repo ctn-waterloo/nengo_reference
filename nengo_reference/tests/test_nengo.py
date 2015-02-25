@@ -25,7 +25,7 @@ del tests['test.nengo.tests.test_connection.test_shortfilter']
 del tests['test.nengo.tests.test_cache.test_cache_works']
 
 
-# probing a Node introduces a one-time-step delay (but doesn't in ref Nengo)
+# probing introduces a one-time-step delay (but doesn't in ref Nengo)
 del tests['test.nengo.tests.test_connection.test_neurons_to_node']
 del tests['test.nengo.tests.test_ensemble.test_constant_scalar']
 del tests['test.nengo.tests.test_ensemble.test_scalar']
@@ -36,6 +36,9 @@ del tests['test.nengo.tests.test_node.test_simple']
 del tests['test.nengo.tests.test_node.test_passthrough']
 del tests['test.nengo.tests.test_synapses.test_lowpass']
 del tests['test.nengo.tests.test_synapses.test_decoders']
+
+# Connection with synapse=None has a one-time-step delay
+del tests['test.nengo.tests.test_node.test_args']
 
 # don't support weight-based solvers
 del tests['test.nengo.tests.test_connection.test_weights']
@@ -91,19 +94,15 @@ del tests['test.nengo.tests.test_neurons.test_lif_zero_tau_ref']
 # No Izhikevich neurons
 del tests['test.nengo.tests.test_neurons.test_izhikevich']
 
-# Parameter t passed in to Nodes should be a float
-del tests['test.nengo.tests.test_node.test_args']
-
 # No support for synapses other that Lowpass
 del tests['test.nengo.tests.test_synapses.test_general']
 
 # Useful for temporarily removing most of the tests
-'''
 keys = sorted(tests.keys())
 for k in tests.keys():
-    if k not in keys[50:60]:
+    #if k not in keys[50:60]:
+    if 'test_node.test_args' not in k:
         del tests[k]
-'''
 
 locals().update(tests)
 

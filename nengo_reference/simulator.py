@@ -54,7 +54,7 @@ class Simulator(object):
         # keep track of the current time step
         self.n_steps += 1
         self.model.n_steps = self.n_steps
-        t = np.array(self.n_steps * self.dt)
+        t = self.n_steps * self.dt
 
         # simulate Nodes
         for node in self.model.nodes:
@@ -76,6 +76,7 @@ class Simulator(object):
                     else:
                         decay = np.exp(-self.dt/tau)
                     f *= decay
+                input.flags.writeable = False
                 output = p.output(t, input)
                 if p.size_out > 0:
                     if output is None:
