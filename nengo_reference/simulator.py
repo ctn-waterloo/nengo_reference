@@ -86,6 +86,7 @@ class Simulator(object):
 
         # simulate Ensembles
         for ens in self.model.ensembles:
+            p = self.model.params[ens]
 
             # get the input from normal ensemble inputs
             input = np.sum(self.model.input_filters[ens].values(), axis=0)
@@ -107,14 +108,13 @@ class Simulator(object):
                 continue
 
             # apply encoder
-            encoders = self.model.params[ens].scaled_encoders
+            encoders = p.scaled_encoders
             input = np.dot(input, encoders.T)
-            gain = self.model.params[ens].gain
 
             # get the input that bypasses encoders
-            input += np.sum(self.model.input_filters[ens.neurons].values(),
-                            axis=0) * gain / ens.radius
-            for tau, f in self.model.input_filters[ens.neurons].items():
+            input += np.sum(self.model.input_filters[p.neurons].values(),
+                            axis=0) * p.gain / p.radius
+            for tau, f in self.model.input_filters[p.neurons].items():
                 if tau is None or tau == 0:
                     decay = 0
                 else:
@@ -122,8 +122,7 @@ class Simulator(object):
                 f *= decay
 
             # feed result into neurons
-            bias = self.model.params[ens].bias
-            self.model.outputs[ens][:] = pool.step(input + bias)
+            self.model.outputs[ens][:] = pool.step(input + p.bias)
 
         # simulate Connections
         for c in self.model.connections:

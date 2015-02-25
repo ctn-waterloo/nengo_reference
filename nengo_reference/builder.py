@@ -16,7 +16,8 @@ import probes
 # for storing all the generated information about an Ensemble
 BuiltEnsemble = collections.namedtuple(
     'BuiltEnsemble', ['eval_points', 'encoders', 'intercepts', 'max_rates',
-                      'scaled_encoders', 'gain', 'bias', 'activity'])
+                      'scaled_encoders', 'gain', 'bias', 'activity',
+                      'neurons', 'radius'])
 
 # for storing all the generated information about a Connection
 BuiltConnection = collections.namedtuple(
@@ -156,6 +157,8 @@ class Builder(object):
                                                scaled_encoders=scaled_encoders,
                                                eval_points=eval_points,
                                                activity=activity,
+                                               neurons=ens.neurons,
+                                               radius=ens.radius
                                                )
         self.model.outputs[ens] = np.zeros(ens.n_neurons, dtype=float)
         self.model.input_filters[ens] = {}
@@ -172,6 +175,8 @@ class Builder(object):
                                                scaled_encoders=None,
                                                eval_points=None,
                                                activity=None,
+                                               neurons=None,
+                                               radius=ens.radius
                                                )
         self.model.outputs[ens] = np.zeros(ens.dimensions, dtype=float)
         self.model.input_filters[ens] = {}
