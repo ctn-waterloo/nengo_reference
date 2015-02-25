@@ -58,15 +58,16 @@ class Simulator(object):
 
         # simulate Nodes
         for node in self.model.nodes:
-            if node.size_in == 0:
+            p = self.model.params[node]
+            if p.size_in == 0:
                 # no input to this Node
-                if callable(node.output):
-                    output = node.output(t)
-                    if output is None and node.size_out > 0:
+                if callable(p.output):
+                    output = p.output(t)
+                    if output is None and p.size_out > 0:
                         raise ValueError('Node %s returned None' % node)
                     self.model.outputs[node][:] = output
                 else:
-                    self.model.outputs[node][:] = node.output
+                    self.model.outputs[node][:] = p.output
             else:
                 input = np.sum(self.model.input_filters[node].values(), axis=0)
                 for tau, f in self.model.input_filters[node].items():
@@ -75,8 +76,8 @@ class Simulator(object):
                     else:
                         decay = np.exp(-self.dt/tau)
                     f *= decay
-                output = node.output(t, input)
-                if node.size_out > 0:
+                output = p.output(t, input)
+                if p.size_out > 0:
                     if output is None:
                         raise ValueError('Node %s returned None' % node)
                     self.model.outputs[node][:] = output

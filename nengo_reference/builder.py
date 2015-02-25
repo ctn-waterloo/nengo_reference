@@ -23,6 +23,10 @@ BuiltConnection = collections.namedtuple(
     'BuiltConnection', ['decoders', 'eval_points', 'transform',
                         'solver_info'])
 
+# for storing all the generated information about a Node
+BuiltNode = collections.namedtuple(
+    'BuiltNode', ['output', 'size_in', 'size_out'])
+
 
 class Model(object):
     """Storage for all the data to be returned from the Builder.
@@ -177,6 +181,9 @@ class Builder(object):
         self.model.outputs[node] = np.zeros(node.size_out, dtype=float)
         self.model.input_filters[node] = {}
         self.model.nodes.append(node)
+        self.model.params[node] = BuiltNode(output=node.output,
+                                            size_in=node.size_in,
+                                            size_out=node.size_out)
 
     def make_connection(self, conn):
         """Build a Connection."""
