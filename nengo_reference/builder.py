@@ -146,6 +146,8 @@ class Builder(object):
                               "n_eval_points. Ignoring n_eval_points.")
             eval_points = np.array(ens.eval_points, dtype=np.float64)
 
+            eval_points *= ens.radius
+
         J = gain * np.dot(eval_points, encoders.T / ens.radius) + bias
         activity = self.compute_activity(ens, J)
 
@@ -209,7 +211,18 @@ class Builder(object):
             if eval_points is None:
                 eval_points = self.model.params[conn.pre_obj].eval_points
             else:
-                eval_points = np.array(eval_points, dtype=np.float64)
+                if isinstance(eval_points, Distribution):
+                    n_points = conn.pre_obj.n_eval_points
+                    if n_points is None:
+                        n_points = nengo.utils.builder.default_n_eval_points(
+                            ens.n_neurons, ens.dimensions)
+                    eval_points = eval_points.sample(n_points,
+                                                     ens.dimensions,
+                                                     self.rng)
+                else:
+                    eval_points = np.array(eval_points, dtype=np.float64)
+                if conn.scale_eval_points:
+                    eval_points *= ens.radius
 
             if conn.pre_slice == slice(None):
                 key = conn.function
