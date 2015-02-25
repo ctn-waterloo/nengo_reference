@@ -4,7 +4,7 @@ An example backend implementation for nengo
 This takes a neural model described using the Nengo framework, builds it 
 into an actual neural simulation, and runs the simulation.  For example:
 
-```
+```python
 import numpy as np
 import nengo
 
