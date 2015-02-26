@@ -210,6 +210,7 @@ class Builder(object):
             eval_points = conn.eval_points
             if eval_points is None:
                 eval_points = self.model.params[conn.pre_obj].eval_points
+                activity = self.model.params[conn.pre_obj].activity
             else:
                 if isinstance(eval_points, Distribution):
                     n_points = conn.pre_obj.n_eval_points
@@ -224,6 +225,11 @@ class Builder(object):
                 if conn.scale_eval_points:
                     eval_points *= ens.radius
 
+                p = self.model.params[conn.pre_obj]
+
+                J = p.gain * np.dot(eval_points, p.encoders.T / p.radius) + p.bias
+                activity = self.compute_activity(conn.pre_obj, J)
+
             if conn.pre_slice == slice(None):
                 key = conn.function
             else:
@@ -234,7 +240,7 @@ class Builder(object):
                                                                 (None, None))
             if decoder is None:
                 result = self.compute_decoder(conn, ens, conn.function,
-                                              eval_points)
+                                              eval_points, activity)
                 self.model.decoders[ens][key] = result
                 decoder, solver_info = result
 
@@ -308,7 +314,7 @@ class Builder(object):
                                     add_to_container=False)
         return node, conn
 
-    def compute_decoder(self, conn, ens, function, eval_points):
+    def compute_decoder(self, conn, ens, function, eval_points, activity):
         """Find the decoder for a given Connection."""
         if function is None:
             targets = eval_points[:, conn.pre_slice]
@@ -323,8 +329,6 @@ class Builder(object):
                     f.shape = f.shape[0],
 
                 targets[i] = f
-
-        activity = self.model.params[ens].activity
 
         if conn.solver.weights:
             raise Exception('Not supported yet')

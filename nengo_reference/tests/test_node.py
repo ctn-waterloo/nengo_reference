@@ -24,7 +24,7 @@ def test_node_whitenoise(Simulator):
 def test_node_t_type(Simulator):
     """Explicitly test that the t value passed into Nodes is an ndarray."""
     def function(t):
-        assert isinstance(t, np.ndarray)
+        assert isinstance(t, float)
         return np.sin(t)
 
     model = nengo.Network()

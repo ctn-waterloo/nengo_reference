@@ -79,12 +79,6 @@ del tests['test.nengo.tests.test_probe.test_simulator_dt']
 # bug in handling Node->Ensemble with pre-slices
 del tests['test.nengo.tests.test_connection.test_node_to_ensemble']
 
-# can't set eval_points as distribution on Connection
-del tests['test.nengo.tests.test_connection.test_eval_points_scaling']
-
-# bug in not scaling eval_points on Ensemble
-del tests['test.nengo.tests.test_ensemble.test_eval_points_scaling']
-
 # doesn't handle Ensemble.noise
 del tests['test.nengo.tests.test_ensemble.test_noise']
 
@@ -99,10 +93,12 @@ del tests['test.nengo.tests.test_synapses.test_general']
 
 # Useful for temporarily removing most of the tests
 keys = sorted(tests.keys())
+'''
 for k in tests.keys():
     #if k not in keys[50:60]:
-    if 'test_node.test_args' not in k:
+    if 'test_eval_points_scaling' not in k:
         del tests[k]
+'''
 
 locals().update(tests)
 
