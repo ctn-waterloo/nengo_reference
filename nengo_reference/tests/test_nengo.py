@@ -44,9 +44,6 @@ del tests['test.nengo.tests.test_node.test_args']
 del tests['test.nengo.tests.test_connection.test_weights']
 del tests['test.nengo.tests.test_neurons.test_reset']
 
-# can't set eval_points on Connections yet
-del tests['test.nengo.tests.test_connection.test_set_eval_points']
-
 # raises wrong type of error when connecting outside Network
 del tests['test.nengo.tests.test_connection.test_nonexistant_prepost']
 
@@ -92,11 +89,11 @@ del tests['test.nengo.tests.test_neurons.test_izhikevich']
 del tests['test.nengo.tests.test_synapses.test_general']
 
 # Useful for temporarily removing most of the tests
-keys = sorted(tests.keys())
 '''
+keys = sorted(tests.keys())
 for k in tests.keys():
     #if k not in keys[50:60]:
-    if 'test_eval_points_scaling' not in k:
+    if 'test_set_eval_points' not in k:
         del tests[k]
 '''
 
