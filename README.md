@@ -33,3 +33,9 @@ pylab.plot(sim.trange(), sim.data[probe_a])
 pylab.plot(sim.trange(), sim.data[probe_b])
 pylab.show()
 ```
+
+# Installation
+
+First, make sure ```nengo``` is installed by doing ```pip install nengo```.  You can also download nengo manually from https://github.com/nengo/nengo .
+
+Now install this by downloading the code (```git clone https://github.com/ctn-waterloo/nengo_reference/```) and doing ```python setup.py develop --user```.
