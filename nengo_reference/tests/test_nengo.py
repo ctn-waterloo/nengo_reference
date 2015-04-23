@@ -1,105 +1,99 @@
+import fnmatch
 import os
 
 import pytest
-
 import nengo
 from nengo.utils.testing import find_modules, load_functions
 
 nengo_dir = os.path.dirname(nengo.__file__)
 modules = find_modules(nengo_dir, prefix='nengo')
+modules = [m for m in modules if m[-1] != 'test_pytest']
 tests = load_functions(modules, arg_pattern='^Simulator$')
 
-# get rid of everything except the basic tests
-for k in tests.keys():
-    if k.startswith('test.nengo.spa'):
-        del tests[k]
-    if k.startswith('test.nengo.networks'):
-        del tests[k]
-    if k.startswith('test.nengo.utils'):
-        del tests[k]
 
-# not raising exception for short filter times
-del tests['test.nengo.tests.test_connection.test_shortfilter']
+def xfail(pattern, msg):
+    for key in tests:
+        if fnmatch.fnmatch(key, pattern):
+            tests[key] = pytest.mark.xfail(True, reason=msg)(tests[key])
 
-# requires support for passing a built Model into Simulator
-del tests['test.nengo.tests.test_cache.test_cache_works']
+xfail('test.nengo.spa.tests.test_basalganglia.test_basal_ganglia',
+      "Requires merging filters.")
+xfail('test.nengo.spa.tests.test_thalamus.test_thalamus',
+      "Requires merging filters.")
+xfail('test.nengo.spa.tests.test_compare.test_run',
+      "Requires merging filters.")
+xfail('test.nengo.utils.tests.test_connection.test_target_function',
+      "Requires merging filters.")
 
+xfail('test.nengo.spa.tests.test_cortical.test_connect',
+      "Below tolerance (should pass)")
+xfail('test.nengo.spa.tests.test_memory.test_run',
+      "Below tolerance (should pass)")
+
+xfail('test.nengo.tests.test_connection.test_shortfilter',
+      "No exception for short filter times.")
+xfail('test.nengo.tests.test_cache.test_cache_works',
+      "No support for passing a built Model into Simulator")
+xfail('test.nengo.tests.test_cache.test_cache_performance',
+      "No support for passing a built Model into Simulator")
 
 # probing introduces a one-time-step delay (but doesn't in ref Nengo)
-del tests['test.nengo.tests.test_connection.test_neurons_to_node']
-del tests['test.nengo.tests.test_ensemble.test_constant_scalar']
-del tests['test.nengo.tests.test_ensemble.test_scalar']
-del tests['test.nengo.tests.test_ensemble.test_vector']
-del tests['test.nengo.tests.test_node.test_connected']
-del tests['test.nengo.tests.test_node.test_time']
-del tests['test.nengo.tests.test_node.test_simple']
-del tests['test.nengo.tests.test_node.test_passthrough']
-del tests['test.nengo.tests.test_synapses.test_lowpass']
-del tests['test.nengo.tests.test_synapses.test_decoders']
+xfail('test.nengo.tests.test_connection.test_neurons_to_node',
+      "Extra timestep delay")
+xfail('test.nengo.tests.test_ensemble.test_constant_scalar',
+      "Extra timestep delay")
+xfail('test.nengo.tests.test_ensemble.test_scalar', "Extra timestep delay")
+xfail('test.nengo.tests.test_ensemble.test_vector', "Extra timestep delay")
+xfail('test.nengo.tests.test_node.test_connected', "Extra timestep delay")
+xfail('test.nengo.tests.test_node.test_time', "Extra timestep delay")
+xfail('test.nengo.tests.test_node.test_simple', "Extra timestep delay")
+xfail('test.nengo.tests.test_node.test_passthrough', "Extra timestep delay")
+xfail('test.nengo.tests.test_synapses.test_lowpass', "Extra timestep delay")
+xfail('test.nengo.tests.test_synapses.test_decoders', "Extra timestep delay")
 
-# Connection with synapse=None has a one-time-step delay
-del tests['test.nengo.tests.test_node.test_args']
+xfail('test.nengo.tests.test_node.test_args',
+      "Connection with synapse=None has a one-time-step delay")
 
-# don't support weight-based solvers
-del tests['test.nengo.tests.test_connection.test_weights']
-del tests['test.nengo.tests.test_neurons.test_reset']
+xfail('test.nengo.tests.test_connection.test_weights',
+      "Weight-based solvers not supported.")
+xfail('test.nengo.tests.test_neurons.test_reset',
+      "Weight-based solvers not supported.")
 
-# raises wrong type of error when connecting outside Network
-del tests['test.nengo.tests.test_connection.test_nonexistant_prepost']
+xfail('test.nengo.tests.test_connection.test_nonexistant_prepost',
+      "Raises wrong type of error when connecting outside Network")
 
-# don't create eval_points for Direct mode
-del tests['test.nengo.tests.test_ensemble.test_eval_points_number']
+xfail('test.nengo.tests.test_learning_rules*', "Learning not implemented")
 
-# warning doesn't seem to be detected by py.test for some reason
-del tests['test.nengo.tests.test_ensemble.test_eval_points_number_warning']
 
-# no learning rules
-for k in tests.keys():
-    if k.startswith('test.nengo.tests.test_learning_rules.'):
-        del tests[k]
+xfail('test.nengo.tests.test_neurons.test_lif',
+      "Can't probe voltage or refractory_time")
 
-# can't probe voltage or refractory_time
-del tests['test.nengo.tests.test_neurons.test_lif']
+xfail('test.nengo.tests.test_synapses.test_alpha', "no Alpha synapses")
 
-# no Alpha synapses
-del tests['test.nengo.tests.test_synapses.test_alpha']
+xfail('test.nengo.tests.test_probe.test_input_probe',
+      "can't probe inputs of Ensembles")
 
-# can't probe inputs of Ensembles
-del tests['test.nengo.tests.test_probe.test_input_probe']
+xfail('test.nengo.tests.test_neurons.test_alif_rate',
+      "specifying ALIF as neuron_type")
 
-# specifying ALIF as neuron_type
-del tests['test.nengo.tests.test_neurons.test_alif_rate']
+xfail('test.nengo.tests.test_probe.test_simulator_dt',
+      "raises error with large dt if neurons can't spike as fast as desired")
 
-# raises error with large dt if neurons can't spike as fast as desired
-del tests['test.nengo.tests.test_probe.test_simulator_dt']
+xfail('test.nengo.tests.test_connection.test_node_to_ensemble',
+      "bug in handling Node->Ensemble with pre-slices")
 
-# bug in handling Node->Ensemble with pre-slices
-del tests['test.nengo.tests.test_connection.test_node_to_ensemble']
+xfail('test.nengo.tests.test_ensemble.test_noise',
+      "doesn't handle Ensemble.noise")
 
-# doesn't handle Ensemble.noise
-del tests['test.nengo.tests.test_ensemble.test_noise']
+xfail('test.nengo.tests.test_neurons.test_lif_zero_tau_ref',
+      "can't set tau_ref=0")
 
-# can't set tau_ref=0
-del tests['test.nengo.tests.test_neurons.test_lif_zero_tau_ref']
+xfail('test.nengo.tests.test_neurons.test_izhikevich', "No Izhikevich neurons")
 
-# No Izhikevich neurons
-del tests['test.nengo.tests.test_neurons.test_izhikevich']
+xfail('test.nengo.tests.test_synapses.test_general',
+      "No support for synapses other that Lowpass")
 
-# No support for synapses other that Lowpass
-del tests['test.nengo.tests.test_synapses.test_general']
-
-# Useful for temporarily removing most of the tests
-'''
-keys = sorted(tests.keys())
-for k in tests.keys():
-    #if k not in keys[50:60]:
-    if 'test_set_eval_points' not in k:
-        del tests[k]
-'''
+xfail('test.nengo.utils.tests.test_ensemble.test_tuning_curves_direct_mode',
+      "eval_points not created for Direct mode")
 
 locals().update(tests)
-
-
-if __name__ == "__main__":
-    nengo.log(debug=True)
-    pytest.main([__file__, '-v'])

@@ -76,7 +76,8 @@ class Simulator(object):
                     else:
                         decay = np.exp(-self.dt/tau)
                     f *= decay
-                input.flags.writeable = False
+                if input.ndim > 0:
+                    input.flags.writeable = False
                 output = p.output(t, input)
                 if p.size_out > 0:
                     if output is None:

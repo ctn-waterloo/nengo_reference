@@ -1,8 +1,6 @@
 import pytest
 
 import nengo
-from nengo.utils.testing import Plotter
-
 import nengo_reference
 
 from nengo.tests.conftest import function_seed
@@ -12,6 +10,7 @@ from nengo.tests.conftest import rng
 from nengo.tests.conftest import RefSimulator
 from nengo.tests.conftest import pytest_addoption
 from nengo.tests.conftest import pytest_runtest_setup
+
 
 def pytest_generate_tests(metafunc):
     if "nl" in metafunc.funcargnames:
