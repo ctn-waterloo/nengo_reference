@@ -1,7 +1,5 @@
 import numpy as np
 
-import nengo
-
 
 class ProbeNodeOutput(object):
     """nengo.Node function to handle collecting Probe data.

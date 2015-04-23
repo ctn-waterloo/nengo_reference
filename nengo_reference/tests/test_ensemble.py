@@ -1,7 +1,5 @@
-import pytest
-import numpy as np
-
 import nengo
+import numpy as np
 
 
 def test_communication(Simulator, RefSimulator, plt, nl):
@@ -38,8 +36,3 @@ def test_communication(Simulator, RefSimulator, plt, nl):
 
     assert np.allclose(sim.data[pA], simref.data[pA], atol=0.1 * radius)
     assert np.allclose(sim.data[pB], simref.data[pB], atol=0.1 * radius)
-
-
-if __name__ == "__main__":
-    nengo.log(debug=True)
-    pytest.main([__file__, '-v'])

@@ -1,12 +1,8 @@
-import pytest
-import numpy as np
-
 import nengo
+import nengo.spa as spa
 
 
 def test_spa(Simulator):
-    import nengo.spa as spa
-
     dimensions = 16
     model = spa.SPA()
     with model:
@@ -22,8 +18,6 @@ def test_spa(Simulator):
 
 
 def test_spa_sequence(Simulator, RefSimulator, plt):
-    import nengo.spa as spa
-
     dimensions = 16
     model = spa.SPA()
     with model:
@@ -50,8 +44,3 @@ def test_spa_sequence(Simulator, RefSimulator, plt):
     plt.plot(sim.trange(), sim.data[p])
     plt.subplot(2, 1, 2)
     plt.plot(refsim.trange(), refsim.data[p])
-
-
-if __name__ == "__main__":
-    nengo.log(debug=True)
-    pytest.main([__file__, '-v'])

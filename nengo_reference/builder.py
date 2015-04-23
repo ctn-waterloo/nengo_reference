@@ -1,12 +1,13 @@
 """Take a nengo model and convert it into a format where it is ready to run."""
 
 import collections
+import warnings
 
 import numpy as np
 
 import nengo
 import nengo.utils.numpy as npext
-from nengo.dists import Distribution, Uniform
+from nengo.dists import Distribution
 import nengo.utils.builder
 
 import neuron
@@ -192,7 +193,7 @@ class Builder(object):
                                             size_in=node.size_in,
                                             size_out=node.size_out)
 
-    def make_connection(self, conn):
+    def make_connection(self, conn):  # noqa: C901
         """Build a Connection."""
         self.model.connections.append(conn)
         if isinstance(conn.pre_obj, nengo.Ensemble):
@@ -227,7 +228,8 @@ class Builder(object):
 
                 p = self.model.params[conn.pre_obj]
 
-                J = p.gain * np.dot(eval_points, p.encoders.T / p.radius) + p.bias
+                J = (p.gain * np.dot(eval_points, p.encoders.T / p.radius)
+                     + p.bias)
                 activity = self.compute_activity(conn.pre_obj, J)
 
             if conn.pre_slice == slice(None):

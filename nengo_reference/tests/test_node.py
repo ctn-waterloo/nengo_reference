@@ -1,6 +1,4 @@
-import pytest
 import numpy as np
-
 import nengo
 
 
@@ -14,7 +12,8 @@ def test_node_whitenoise(Simulator):
 
     model = nengo.Network()
     with model:
-        stimulus = nengo.Node(nengo.processes.WhiteNoise(1, 10).f(), size_out=2)
+        stimulus = nengo.Node(nengo.processes.WhiteNoise(1, 10).f(),
+                              size_out=2)
         a = nengo.Ensemble(100, 2)
         nengo.Connection(stimulus, a)
     sim = Simulator(model)
@@ -34,8 +33,3 @@ def test_node_t_type(Simulator):
         nengo.Connection(stimulus, a)
     sim = Simulator(model)
     sim.run(1)
-
-
-if __name__ == "__main__":
-    nengo.log(debug=True)
-    pytest.main([__file__, '-v'])

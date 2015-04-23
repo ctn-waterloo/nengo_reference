@@ -49,7 +49,7 @@ class Simulator(object):
         n_steps = int(self.n_steps * (self.dt / dt))
         return dt * np.arange(1, n_steps + 1)
 
-    def step(self):
+    def step(self):  # noqa: C901
 
         # keep track of the current time step
         self.n_steps += 1
