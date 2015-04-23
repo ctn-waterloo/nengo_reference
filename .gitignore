@@ -39,6 +39,7 @@ htmlcov/
 .cache
 nosetests.xml
 coverage.xml
+nengo_reference.simulator.plots
 
 # Translations
 *.mo
@@ -52,3 +53,6 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# Mac OS X stuff
+.DS_Store
