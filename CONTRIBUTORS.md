@@ -19,3 +19,4 @@ to the file like so:
 Please keep this list sorted alphabetically.
 
 - Terry Stewart <terry.stewart@gmail.com>
+- Trevor Bekolay <tbekolay@gmail.com>
