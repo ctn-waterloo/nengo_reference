@@ -1,6 +1,6 @@
-version_info = (0, 1, 0)  # (major, minor, patch)
+version_info = (0, 1, 1)  # (major, minor, patch)
 rc = None
-dev = False
+dev = True
 
 version = "{0}{1}{2}".format('.'.join(str(v) for v in version_info),
                              '-rc{0:d}'.format(rc) if rc is not None else '',
