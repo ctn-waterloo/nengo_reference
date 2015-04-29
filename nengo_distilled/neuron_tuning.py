@@ -1,11 +1,13 @@
 """Helper functions for working with neurons."""
+import warnings
 
 import numpy as np
 
 try:
     import scipy.interpolate
 except ImportError:
-    raise ImportError('Could not import "scipy.interpolate"')
+    warnings.warn('Could not import "scipy.interpolate"')
+    HAS_SCIPY = False
 
 
 def compute_neuron_response(neurons, time=1, initial_time=0.1, steps=100,
@@ -122,6 +124,8 @@ class RateApproximator(object):
 
     def approximate_activity(self, neurons, J):
         """Return the activity of neurons given the input J."""
+        if not HAS_SCIPY:
+            raise ImportError('Could not import "scipy.interpolate"')
         J = np.clip(J, self.J_min, self.J_max)
 
         r = self.response.get(neurons.neuron_name, None)

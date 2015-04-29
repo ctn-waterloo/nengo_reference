@@ -2,11 +2,12 @@ import pytest
 import numpy as np
 
 import nengo
-import nengo_brainstorm.neuron as neuron
-import nengo_brainstorm.neuron_tuning as neuron_tuning
+import nengo_distilled.neuron as neuron
+import nengo_distilled.neuron_tuning as neuron_tuning
 
 
 def test_rate_approximator(Simulator, plt):
+    pytest.importorskip('scipy')
     N = 10
     pool = neuron.LIFSpikingPool(n_neurons=N)
 

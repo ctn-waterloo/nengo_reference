@@ -10,9 +10,9 @@ import nengo.utils.numpy as npext
 from nengo.dists import Distribution
 import nengo.utils.builder
 
-import neuron
-import neuron_tuning
-import probes
+from . import neuron
+from . import neuron_tuning
+from . import probes
 
 # for storing all the generated information about an Ensemble
 BuiltEnsemble = collections.namedtuple(

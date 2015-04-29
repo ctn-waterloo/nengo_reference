@@ -3,7 +3,7 @@ import logging
 import numpy as np
 import nengo
 
-import builder
+from . import builder
 
 logger = logging.getLogger(__name__)
 
@@ -69,7 +69,8 @@ class Simulator(object):
                 else:
                     self.model.outputs[node][:] = p.output
             else:
-                input = np.sum(self.model.input_filters[node].values(), axis=0)
+                input = np.sum(list(self.model.input_filters[node].values()),
+                               axis=0)
                 for tau, f in self.model.input_filters[node].items():
                     if tau is None or tau == 0:
                         decay = 0
@@ -91,7 +92,8 @@ class Simulator(object):
             p = self.model.params[ens]
 
             # get the input from normal ensemble inputs
-            input = np.sum(self.model.input_filters[ens].values(), axis=0)
+            input = np.sum(list(self.model.input_filters[ens].values()),
+                           axis=0)
             if input.shape == ():
                 input = np.zeros(ens.size_in)
 
@@ -114,7 +116,7 @@ class Simulator(object):
             input = np.dot(input, encoders.T)
 
             # get the input that bypasses encoders
-            input += np.sum(self.model.input_filters[p.neurons].values(),
+            input += np.sum(list(self.model.input_filters[p.neurons].values()),
                             axis=0) * p.gain / p.radius
             for tau, f in self.model.input_filters[p.neurons].items():
                 if tau is None or tau == 0:

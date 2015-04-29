@@ -3,13 +3,13 @@ import pytest
 import nengo
 import nengo_distilled
 
-from nengo.tests.conftest import function_seed
-from nengo.tests.conftest import plt
-from nengo.tests.conftest import seed
-from nengo.tests.conftest import rng
-from nengo.tests.conftest import RefSimulator
-from nengo.tests.conftest import pytest_addoption
-from nengo.tests.conftest import pytest_runtest_setup
+from nengo.tests.conftest import function_seed  # noqa: F401
+from nengo.tests.conftest import plt  # noqa: F401
+from nengo.tests.conftest import seed  # noqa: F401
+from nengo.tests.conftest import rng  # noqa: F401
+from nengo.tests.conftest import RefSimulator  # noqa: F401
+from nengo.tests.conftest import pytest_addoption  # noqa: F401
+from nengo.tests.conftest import pytest_runtest_setup  # noqa: F401
 
 
 def pytest_generate_tests(metafunc):

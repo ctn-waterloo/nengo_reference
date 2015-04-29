@@ -2,7 +2,7 @@ import pytest
 import numpy as np
 
 import nengo
-import nengo_brainstorm.neuron as neuron
+import nengo_distilled.neuron as neuron
 
 
 def test_lif_rate():
