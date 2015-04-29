@@ -1,10 +1,21 @@
-===============
-nengo_distilled
-===============
+=========================
+A distilled Nengo backend
+=========================
 
-An example backend implementation for Nengo.
+This is an example backend implementation for Nengo.
 
-This takes a neural model described
+It does not require any additional dependencies;
+instead, this backend is the
+`reference backend <https://github.com/nengo/nengo>`_
+distilled into the essential parts.
+As such, it is designed to be
+simpler, easier to understand,
+and easier to debug.
+If you're interested in writing your own Nengo backend,
+then this implementation is likely a better
+starting point than the reference backend.
+
+`nengo_distilled` takes a neural model described
 using the Nengo framework,
 builds it into an actual neural simulation,
 and runs the simulation. For example::
@@ -39,13 +50,30 @@ and runs the simulation. For example::
 Installation
 ============
 
-First, make sure ``nengo`` is installed by doing
-``pip install nengo``.
-You can also download and install Nengo manually
-from `nengo/nengo <https://github.com/nengo/nengo>`_.
+The easiest way to install is to use ``pip``.
 
-Now, install this by downloading the code
-(``git clone https://github.com/nengo/nengo_distilled/``)
-and doing ``python setup.py develop``
-(or ``python setup.py develop --user``
-if you want to install to your home directory).
+.. code-block:: bash
+
+   pip install nengo_distilled
+
+If that doesn't work, then try
+installing ``nengo`` manually,
+using the instructions at
+`nengo/nengo <https://github.com/nengo/nengo>`_.
+Then, try ``pip install nengo_distilled`` again.
+If that doesn't work, try a develop installation.
+
+Developer installation
+----------------------
+
+If you want to make changes to ``nengo_distilled``,
+then do the following.
+
+.. code-block:: bash
+
+   git clone https://github.com/nengo/nengo_distilled/
+   cd nengo_distilled
+   python setup.py develop --user
+
+If you’re using a ``virtualenv`` (recommended!)
+then you can omit the ``--user`` flag.
