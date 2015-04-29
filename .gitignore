@@ -39,7 +39,7 @@ htmlcov/
 .cache
 nosetests.xml
 coverage.xml
-nengo_reference.simulator.plots
+nengo_distilled.simulator.plots
 
 # Translations
 *.mo

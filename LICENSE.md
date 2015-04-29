@@ -1,12 +1,12 @@
-Nengo Reference Backend license
+Nengo Distilled Backend license
 ===============================
 
-Nengo Reference Backend is made available under a proprietary license that 
+Nengo Distilled Backend is made available under a proprietary license that
 permits using, copying, sharing, and making derivative works
-from Nengo Reference Backend and its source code for any non-commercial 
+from Nengo Distilled Backend and its source code for any non-commercial
 purpose.
 
-If you would like to use Nengo Reference Backend commercially, licenses can be
+If you would like to use Nengo Distilled Backend commercially, licenses can be
 purchased from Applied Brain Research, Inc. Please contact
 info@appliedbrainresearch.com for more information.
 
@@ -15,15 +15,15 @@ Contributor Assignment Agreement
 
 Harmony (HA-CAA-I-ANY) Version 1.0
 
-Nengo Reference Backend Individual Contributor Assignment Agreement
+Nengo Distilled Backend Individual Contributor Assignment Agreement
 ---------------------------------------------------------------------
 
-Thank you for your interest in contributing to the Nengo Reference Backend 
+Thank you for your interest in contributing to the Nengo Distilled Backend
 ("We" or "Us"). This contributor agreement ("Agreement") documents the rights
 granted by contributors to Us. To make this document effective, please
 sign it and send it to Us by electronic submission, following the
 instructions at
-<https://github.com/ctn-waterloo/nengo_reference/blob/master/CONTRIBUTORS.md>.
+<https://github.com/nengo/nengo_distilled/blob/master/CONTRIBUTORS.md>.
 This is a legally binding document, so please read it carefully before
 agreeing to it. The Agreement may cover more than one software project
 managed by Us.
@@ -36,7 +36,7 @@ managed by Us.
 to Us in which You own or assert ownership of the Copyright. If You do
 not own the Copyright in the entire work of authorship, please follow
 the instructions in
-<https://github.com/ctn-waterloo/nengo_reference/blob/master/CONTRIBUTORS.md>.
+<https://github.com/nengo/nengo_distilled/blob/master/CONTRIBUTORS.md>.
 
 "Copyright" means all rights protecting works of authorship owned or
 controlled by You, including copyright, moral and neighboring rights,
@@ -158,7 +158,7 @@ than eighteen years old, please have Your parents or guardian sign the
 Agreement.
 
 (d) You have followed the instructions in
-<https://github.com/ctn-waterloo/nengo_reference/blob/master/CONTRIBUTORS.md>,
+<https://github.com/nengo/nengo_distilled/blob/master/CONTRIBUTORS.md>,
 if You do not own the Copyright in the entire work of authorship
 Submitted.
 

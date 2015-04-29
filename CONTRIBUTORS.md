@@ -1,10 +1,10 @@
-Nengo Reference Backend contributors
+Nengo Distilled Backend contributors
 ====================================
 
-This is a list of people who have contributed to the Nengo Reference
+This is a list of people who have contributed to the Nengo Distilled
 Backend.  Note that this is not the list of copyright holders;
 Applied Brain Research Inc. holds the copyright to
-all Nengo Reference Backend code, except for code that is used under
+all Nengo Distilled Backend code, except for code that is used under
 various licenses, as described in the LICENSE.md file.
 
 By adding your name to this file, you are agreeing

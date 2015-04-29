@@ -1,5 +1,5 @@
 ===============
-nengo_reference
+nengo_distilled
 ===============
 
 An example backend implementation for Nengo.
@@ -24,9 +24,9 @@ and runs the simulation. For example::
        probe_a = nengo.Probe(a, synapse=0.01)
        probe_b = nengo.Probe(b, synapse=0.01)
 
-   import nengo_reference
+   import nengo_distilled
    # build the model
-   sim = nengo_reference.Simulator(model)
+   sim = nengo_distilled.Simulator(model)
    # run the model
    sim.run(10)
 
@@ -45,7 +45,7 @@ You can also download and install Nengo manually
 from `nengo/nengo <https://github.com/nengo/nengo>`_.
 
 Now, install this by downloading the code
-(``git clone https://github.com/ctn-waterloo/nengo_reference/``)
+(``git clone https://github.com/nengo/nengo_distilled/``)
 and doing ``python setup.py develop``
 (or ``python setup.py develop --user``
 if you want to install to your home directory).

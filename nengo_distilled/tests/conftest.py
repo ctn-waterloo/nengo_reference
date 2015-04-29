@@ -1,7 +1,7 @@
 import pytest
 
 import nengo
-import nengo_reference
+import nengo_distilled
 
 from nengo.tests.conftest import function_seed
 from nengo.tests.conftest import plt
@@ -28,4 +28,4 @@ def Simulator(request):
     Please use this, and not nengo.Simulator directly,
     unless the test is reference simulator specific.
     """
-    return nengo_reference.Simulator
+    return nengo_distilled.Simulator
