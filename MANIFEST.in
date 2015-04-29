@@ -2,3 +2,5 @@ include *.md
 include *.py
 include *.rst
 include *.sh
+include *.txt
+include tox.ini
