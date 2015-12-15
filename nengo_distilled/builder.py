@@ -286,7 +286,7 @@ class Builder(object):
     def make_probe(self, probe):
         """Make a Probe by creating a Connection and Node.
 
-        By implementing Proves this way, the rest of the code doesn't need
+        By implementing Probes this way, the rest of the code doesn't need
         to do anything special, as long as it correctly handles
         Connections and Nodes.
         """

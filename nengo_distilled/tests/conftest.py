@@ -1,24 +1,18 @@
 import pytest
 
-import nengo
 import nengo_distilled
 
-from nengo.tests.conftest import function_seed  # noqa: F401
-from nengo.tests.conftest import plt  # noqa: F401
-from nengo.tests.conftest import seed  # noqa: F401
-from nengo.tests.conftest import rng  # noqa: F401
-from nengo.tests.conftest import RefSimulator  # noqa: F401
-from nengo.tests.conftest import pytest_addoption  # noqa: F401
-from nengo.tests.conftest import pytest_runtest_setup  # noqa: F401
+from nengo.tests.conftest import *
+from nengo import Direct, LIF, LIFRate, RectifiedLinear, Sigmoid
 
+nt = [Direct, LIF, LIFRate, RectifiedLinear, Sigmoid]
 
 def pytest_generate_tests(metafunc):
     if "nl" in metafunc.funcargnames:
-        metafunc.parametrize(
-            "nl", [nengo.Direct, nengo.LIF, nengo.LIFRate])
+        metafunc.parametrize("nl", nt)
     if "nl_nodirect" in metafunc.funcargnames:
         metafunc.parametrize(
-            "nl_nodirect", [nengo.LIF, nengo.LIFRate])
+            "nl_nodirect", [n for n in nt if n is not Direct])
 
 
 @pytest.fixture(scope="session")

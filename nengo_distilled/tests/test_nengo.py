@@ -22,13 +22,54 @@ xfail('test.nengo.spa.tests.test_thalamus.test_thalamus',
       "Requires merging filters.")
 xfail('test.nengo.spa.tests.test_compare.test_run',
       "Requires merging filters.")
+xfail('test.nengo.spa.tests.test_cortical.test_convolution',
+      "Requires merging filters.")
 xfail('test.nengo.utils.tests.test_connection.test_target_function',
       "Requires merging filters.")
+xfail('test.nengo.networks.tests.test_product.test_sine_waves',
+      "Requires merging filters.")
+xfail('test.nengo.networks.tests.test_product.'
+      'test_direct_mode_with_single_neuron',
+      "Requires merging filters.")
+xfail('test.nengo.spa.tests.test_thalamus.test_routing',
+      "Requires merging filters.")
+xfail('test.nengo.spa.tests.test_thalamus.test_nondefault_routing',
+      "Requires merging filters.")
+
+xfail('test.nengo.tests.test_connection.test_decoder_probe',
+      "Probing weights not supported.")
+xfail('test.nengo.tests.test_connection.test_transform_probe',
+      "Probing weights not supported.")
+
+xfail('test.nengo.tests.test_ensemble.test_noise_gen',
+      "Processes not implemented yet.")
+xfail('test.nengo.tests.test_neurons.test_dt_dependence',
+      "Processes not implemented yet.")
+xfail('test.nengo.tests.test_processes.test_brownnoise',
+      "Processes not implemented yet.")
+xfail('test.nengo.tests.test_processes.test_gaussian_whitenoise',
+      "Processes not implemented yet.")
+xfail('test.nengo.tests.test_processes.test_whitesignal_*',
+      "Processes not implemented yet.")
+xfail('test.nengo.tests.test_processes.test_reset',
+      "Processes not implemented yet.")
+xfail('test.nengo.utils.tests.test_neurons.test_rates*',
+      "Processes not implemented yet.")
+
+xfail('test.nengo.tests.test_synapses.test_triangle',
+      "Triangle synapses not implemented yet.")
+xfail('test.nengo.tests.test_synapses.test_linearfilter',
+      "Can't handle arbitrary linear filters.")
+
+xfail('test.nengo.utils.tests.test_connection.test_eval_point_decoding',
+      "Weights not probeable yet.")
 
 xfail('test.nengo.spa.tests.test_cortical.test_connect',
       "Below tolerance (should pass)")
 xfail('test.nengo.spa.tests.test_memory.test_run',
       "Below tolerance (should pass)")
+xfail('test.nengo.tests.test_connection.test_neuron_slicing',
+      "Third dimension is wrong but should pass.")
 
 xfail('test.nengo.tests.test_connection.test_shortfilter',
       "No exception for short filter times.")
@@ -64,7 +105,8 @@ xfail('test.nengo.tests.test_connection.test_nonexistant_prepost',
 
 xfail('test.nengo.tests.test_learning_rules*', "Learning not implemented")
 
-
+xfail('test.nengo.tests.test_neurons.test_lif_min_voltage',
+      "Can't probe voltage or refractory_time")
 xfail('test.nengo.tests.test_neurons.test_lif',
       "Can't probe voltage or refractory_time")
 
