@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 
 class Simulator(object):
-    """Run a Nengo simulation using the nengo_brainstorm backend."""
+    """Run a Nengo simulation using the nengo_distilled backend."""
     def __init__(self, model, dt=0.001, seed=None):
         if seed is None:
             seed = model.seed

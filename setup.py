@@ -27,9 +27,9 @@ version_module = imp.load_source(
 description = "Distilled backend for Nengo."
 long_description = read('README.rst', 'CHANGES.rst')
 
-url = "https://github.com/nengo/nengo_distilled"
+url = "https://github.com/nengo/nengo-distilled"
 setup(
-    name="nengo_distilled",
+    name="nengo-distilled",
     version=version_module.version,
     author="Applied Brain Research",
     author_email="info@appliedbrainresearch.com",

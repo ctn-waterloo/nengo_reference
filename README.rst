@@ -54,13 +54,13 @@ The easiest way to install is to use ``pip``.
 
 .. code-block:: bash
 
-   pip install nengo_distilled
+   pip install nengo-distilled
 
 If that doesn't work, then try
 installing ``nengo`` manually,
 using the instructions at
 `nengo/nengo <https://github.com/nengo/nengo>`_.
-Then, try ``pip install nengo_distilled`` again.
+Then, try ``pip install nengo-distilled`` again.
 If that doesn't work, try a develop installation.
 
 Developer installation
@@ -71,8 +71,8 @@ then do the following.
 
 .. code-block:: bash
 
-   git clone https://github.com/nengo/nengo_distilled/
-   cd nengo_distilled
+   git clone https://github.com/nengo/nengo-distilled/
+   cd nengo-distilled
    python setup.py develop --user
 
 If you’re using a ``virtualenv`` (recommended!)
