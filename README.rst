@@ -1,3 +1,16 @@
+==========================================
+NOTE: This project is no longer maintained
+==========================================
+
+Many backends have been created since 2015,
+when this repository was made.
+We now recommend that new backend developers
+start from a real backend that is
+most similar to the new backend
+they want to develop.
+The list of existing backends
+can be found at https://www.nengo.ai/.
+
 =========================
 A distilled Nengo backend
 =========================
